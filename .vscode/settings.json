@@ -1,0 +1,13 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "dotenv.enableAutocloaking": false,
+    "editor.formatOnSave":true,
+    "editor.codeActionsOnSave":{
+        "source.fixAll":true,
+        "source.organizeImports":true
+    },
+    "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+}

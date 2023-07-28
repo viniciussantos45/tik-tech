@@ -1,0 +1,59 @@
+{
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+    // By extending from a plugin config, we can get recommended rules without having to add them manually.
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+
+    
+    "plugin:prettier/recommended",
+
+    "eslint-config-prettier"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["./", "src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "import/named": "off",
+    "import/no-unresolved": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": [
+      "off",
+      {
+        "ignoreTranspilerName": false
+      }
+    ],
+    "react/no-children-prop": [
+      "off",
+      {
+        "allowFunctions": true
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 130
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "none",
+        "semi": false,
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}

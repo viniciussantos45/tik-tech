@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  image-generator:
+    image: image-generator-html
+    build: 
+      context: ./modules/image-generator-html
+    container_name: img-generator-html
+    environment:
+      - PORT=2000
+      - HOST=0.0.0.0
+
+    ports:
+      - "2000:2000"
+    networks:
+      - video-generator
+  carbonara:
+    image: petersolopov/carbonara
+
+    container_name: carbonara
+    ports:
+      - "3000:3000"
+
+    networks:
+      - video-generator
+networks:
+  video-generator:
+    driver: bridge

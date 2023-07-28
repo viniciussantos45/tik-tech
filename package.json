@@ -1,0 +1,36 @@
+{
+  "name": "audio-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./index.js",
+    "dev": "ts-node ./index.ts",
+    "test": "ts-node ./src/test.ts"
+  },
+  "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/node": "^20.4.2",
+    "@types/uuid": "^9.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@aws-sdk/client-polly": "^3.370.0",
+    "@aws-sdk/client-s3": "^3.378.0",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "jimp": "^0.22.8",
+    "openai": "^3.3.0",
+    "uuid": "^9.0.0"
+  }
+}
