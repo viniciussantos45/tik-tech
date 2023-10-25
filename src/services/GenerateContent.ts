@@ -1,13 +1,14 @@
 import dotenv from 'dotenv'
 import { Configuration, OpenAIApi } from 'openai'
 import { removeFirstWordInCodeBlocks } from '../utils'
+import { languagePrograms } from './GenerateCarbonCode'
 
 dotenv.config()
 
 type GenerateContentReturn = {
   title: string
   tags: string[]
-  programming_language: string
+  programming_language: (typeof languagePrograms)[keyof typeof languagePrograms]
   code_example: string
   narration: string
 }
@@ -65,7 +66,7 @@ export async function generateContent({ feature, programming_language }: Generat
               },
               code_example: {
                 type: 'string',
-                description: 'code example based in example. Should be in markdown'
+                description: 'code example based in example. Should be in markdown. Do not add comments'
               },
               narration: {
                 type: 'string',

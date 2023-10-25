@@ -48,7 +48,9 @@ export const generateSubtitle = async ({ text, id, config }: GenerateSubtitle) =
       // The Body object also has 'transformToByteArray' and 'transformToWebStream' methods.
       const audioWebStream = (await s3response.Body.transformToByteArray()) as Buffer
 
-      await fs.writeFile(`${PATH_RESULTS}/${id}/subtitles.marks`, Buffer.from(audioWebStream))
+      const outputMarks = `${PATH_RESULTS}/${id}/subtitles.marks`
+
+      await fs.writeFile(outputMarks, Buffer.from(audioWebStream))
     } catch (err) {
       console.error(err)
     }

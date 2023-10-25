@@ -2,6 +2,8 @@ import { exec as execCallback } from 'child_process'
 import fs from 'fs/promises'
 import { promisify } from 'node:util'
 
+import { parse, stringify } from 'ass-compiler'
+
 type Mark = {
   time: number
   type: string
@@ -18,8 +20,6 @@ const getMarks = async (filePathMarks: string): Promise<Mark[]> => {
   const content = await fs.readFile(filePathMarks, 'utf8')
 
   const lines = content.split('\n').filter((line) => line.trim().length > 0)
-
-  console.log('lines', lines)
 
   const marks = lines.map((line) => JSON.parse(line))
 
@@ -88,6 +88,23 @@ function formatCaption(caption: string): string {
   return caption.slice(0, lineBreakIndex) + '\n' + caption.slice(lineBreakIndex + 1)
 }
 
+export async function styleFontAss(filePath: string) {
+  // get content from filePath
+  const content = await fs.readFile(filePath, 'utf8')
+
+  const parsedASS = parse(content)
+
+  parsedASS.styles.style[0].Fontsize = '15'
+  parsedASS.styles.style[0].PrimaryColour = '&H00FFFF&'
+  parsedASS.styles.style[0].Italic = '1'
+
+  const newParsedAss = stringify(parsedASS)
+
+  // console.log('decompiledText', decompiledText)
+
+  await fs.writeFile(filePath, newParsedAss)
+}
+
 export const buildSubtitle = async (id: string) => {
   const filePathMarks = `${PATH_RESULTS}/${id}/subtitles.marks`
 
@@ -97,7 +114,11 @@ export const buildSubtitle = async (id: string) => {
 
   await fs.writeFile(`${PATH_RESULTS}/${id}/captions.srt`, captions)
 
-  await exec(`ffmpeg -i ${PATH_RESULTS}/${id}/captions.srt ${PATH_RESULTS}/${id}/captions.ass`)
+  const outputAss = `${PATH_RESULTS}/${id}/captions.ass`
+
+  await exec(`ffmpeg -i ${PATH_RESULTS}/${id}/captions.srt ${outputAss}`)
+
+  await styleFontAss(outputAss)
 
   return captions
 }

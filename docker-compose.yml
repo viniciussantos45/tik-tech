@@ -11,6 +11,8 @@ services:
 
     ports:
       - "2000:2000"
+    volumes:
+      - ./modules/image-generator-html/public:/usr/app/public
     networks:
       - video-generator
   carbonara:

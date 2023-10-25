@@ -6,17 +6,38 @@ const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
 
 type GenerateCarbonCodeParams = {
   code: string
+  language: (typeof languagePrograms)[keyof typeof languagePrograms]
   id: string
 }
 
-export async function generateCarbonCode({ code, id }: GenerateCarbonCodeParams) {
+export const languagePrograms = {
+  nodejs: 'javascript',
+  javascript: 'javascript',
+  typescript: 'typescript',
+  python: 'python',
+  java: 'java',
+  csharp: 'csharp',
+  php: 'php',
+  ruby: 'ruby',
+  go: 'go',
+  kotlin: 'kotlin',
+  swift: 'swift',
+  rust: 'rust',
+  c: 'c',
+  cpp: 'cpp',
+  dart: 'dart',
+  r: 'r',
+  scala: 'scala'
+} as const
+
+export async function generateCarbonCode({ code, language, id }: GenerateCarbonCodeParams) {
   const data = {
     code: `${code}`,
     backgroundColor: 'rgba(74,144,226,0)',
     theme: 'dracula-pro',
     // theme: 'base16-dark',
     windowTheme: 'none',
-    language: 'javascript',
+    language: languagePrograms[language] ?? 'auto',
     dropShadow: true,
     dropShadowOffsetY: '10px',
     dropShadowBlurRadius: '28px',
