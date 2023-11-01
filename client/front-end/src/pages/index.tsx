@@ -76,9 +76,11 @@ function Home() {
           <>
             <p className='text-gray-600 text-md font-bold mt-10'>Your Videos:</p>
             <div className='flex flex-col gap-2 max-h-[320px] overflow-auto pr-[1px]'>
-              {videos.reverse().map((video) => (
-                <CardVideo key={video.uuid} videoData={video} />
-              ))}
+              {videos
+                .sort((a, b) => a.feature.charAt(0).toLowerCase().charCodeAt(0) - b.feature.charAt(0).toLowerCase().charCodeAt(0))
+                .map((video) => (
+                  <CardVideo key={video.uuid} videoData={video} />
+                ))}
             </div>
           </>
         )}
