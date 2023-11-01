@@ -39,7 +39,8 @@ export async function videoGenerator(feature: string, programming_language: stri
 
   if (!content) {
     io.emit('video-status', { id, status: 'error', status_message: 'Content not generated' })
-    throw new Error('Content not generated')
+    console.log('Content not generated')
+    return null
   }
 
   const textWithoutSSML = content.narration.replace(/(')|(`)/g, '')
@@ -70,9 +71,11 @@ export async function videoGenerator(feature: string, programming_language: stri
     })
   ])
 
+  console.log('Join all parts for this video')
   io.emit('video-status', { id, status: 'processing', status_message: 'Join all parts for this video' })
   await buildVideo(id)
 
+  console.log('Video generated')
   io.emit('video-status', { id, status: 'finished', status_message: 'Your video was generated' })
   return {
     id,
