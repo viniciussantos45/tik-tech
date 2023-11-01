@@ -24,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-indexed-db-hook": "^1.0.14",
+    "react-loader-spinner": "^5.4.5",
     "react-query": "^3.39.3",
     "socket.io-client": "^4.7.2",
     "tailwind-merge": "^1.14.0",

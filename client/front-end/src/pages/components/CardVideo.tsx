@@ -3,6 +3,8 @@ import { Download, Video as VideoIcon } from '@phosphor-icons/react'
 
 import JsFileDownloader from 'js-file-downloader'
 
+import { Oval } from 'react-loader-spinner'
+
 type CardVideoProps = {
   videoData: VideoProps
 }
@@ -10,8 +12,18 @@ type CardVideoProps = {
 export const CardVideo = ({ videoData }: CardVideoProps) => {
   const video = videoData
 
-  const statusColor = video.status === 'pending' || video.status === 'processing' ? 'text-yellow-400' : 'text-green-500'
-  const borderColor = video.status === 'pending' || video.status === 'processing' ? 'border-yellow-400' : 'border-green-500'
+  const statusColor =
+    video.status === 'pending' || video.status === 'processing'
+      ? 'text-yellow-400'
+      : video.status === 'error'
+      ? 'text-red-500'
+      : 'text-green-500'
+  const borderColor =
+    video.status === 'pending' || video.status === 'processing'
+      ? 'border-yellow-400'
+      : video.status === 'error'
+      ? 'border-red-500'
+      : 'border-green-500'
 
   return (
     <div
@@ -42,6 +54,20 @@ export const CardVideo = ({ videoData }: CardVideoProps) => {
           >
             <Download size={32} weight='fill' />
           </div>
+        )}
+        {video.status === 'processing' && (
+          <Oval
+            height={30}
+            width={30}
+            color='#eab308'
+            wrapperStyle={{}}
+            wrapperClass=''
+            visible={true}
+            ariaLabel='oval-loading'
+            secondaryColor='#fde047'
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />
         )}
       </div>
     </div>
