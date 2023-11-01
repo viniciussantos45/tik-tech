@@ -4,7 +4,7 @@ export const DBConfig = {
   objectStoresMeta: [
     {
       store: 'videos',
-      storeConfig: { keyPath: 'uuid', unique: true },
+      storeConfig: { keyPath: 'uuid', unique: true, autoIncrement: false },
       storeSchema: [
         { name: 'feature', keypath: 'feature', options: { unique: false } },
         { name: 'programming_language', keypath: 'programming_language', options: { unique: false } },
