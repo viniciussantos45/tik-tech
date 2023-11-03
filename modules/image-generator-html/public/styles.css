@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700&display=swap');
+
+* {
+  box-sizing: content-box;
+  width: auto;
+  background: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+body {
+  background: none;
+}
+
+div.tags-with-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0px;
+}
+
+div.tags {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 60px 0px;
+}
+
+.nodejs-color {
+  color: #509c34;
+  border-color: #72B05C;
+}
+
+h2.nodejs-color {
+  color: #62af46;
+}
+
+.python-color {
+  color: #cebc1a;
+  border-color: #cebc1a;
+}
+
+h2.python-color {
+  color: #cebc1a;
+}
+
+h2 span {
+  font-size: 3rem;
+}
+
+div.content-border {
+  display: inline-block;
+  border: 10px solid;
+  border-radius: 80px;
+  background: none;
+}
+
+div.content {
+  position: relative;
+  width: 920px;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 50px 10px;
+  border-radius: 50px;
+  margin: 30px;
+  /* filter: blur(10px) */
+  background: #ffffff;
+}
+
+div.content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background: no-repeat center center / cover;
+  /* substitua 'caminho_para_sua_imagem.jpg' pelo caminho real da sua imagem */
+  filter: blur(100px);
+  /* ajuste o valor de acordo com o quanto você deseja desfocar */
+  z-index: -1;
+  /* coloca o pseudo-elemento atrás do conteúdo do elemento .content */
+
+}
+
+.content-container {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 50px;
+}
+
+.content-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('caminho_para_sua_imagem.jpg') no-repeat center center / cover;
+  filter: blur(10px);
+  z-index: -1;
+  transform: scale(1.2);
+}
+
+h1 {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -2px;
+  text-transform: lowercase;
+}
+
+img.logo {
+  width: 200px;
+}
+
+.arrow {
+  width: 200px;
+  height: 5px;
+  background: #535353;
+  position: relative;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  border-left: 12px solid #535353;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+h3 {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -1px;
+  margin-top: 20px;
+  color: #636363;
+}
