@@ -2,11 +2,10 @@ import { exec as execCallback } from 'child_process'
 
 import path from 'node:path'
 import { promisify } from 'util'
+import { PATH_RESULTS } from '../config/environment'
 import { getRandomInt } from '../utils'
 
 const exec = promisify(execCallback)
-
-const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
 
 const getMediaDuration = async (filePath: string) => {
   const { stdout } = await exec(
@@ -16,7 +15,7 @@ const getMediaDuration = async (filePath: string) => {
 }
 
 export const buildVideo = async (id: string) => {
-  const videoBase: string = path.resolve(__dirname, `../../videos/${getRandomInt(1, 14)}.mp4`)
+  const videoBase: string = path.resolve(process.cwd(), `videos/${getRandomInt(1, 14)}.mp4`)
   const audio: string = path.resolve(process.cwd(), `${PATH_RESULTS}/${id}/audio.mp3`)
   const imagem: string = path.resolve(process.cwd(), `${PATH_RESULTS}/${id}/code.png`)
   const legenda: string = path.resolve(process.cwd(), `${PATH_RESULTS}/${id}/captions.ass`)

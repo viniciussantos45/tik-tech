@@ -3,6 +3,7 @@ import fs from 'fs/promises'
 import { promisify } from 'node:util'
 
 import { parse, stringify } from 'ass-compiler'
+import { PATH_RESULTS } from '../config/environment'
 
 type Mark = {
   time: number
@@ -13,8 +14,6 @@ type Mark = {
 }
 
 const exec = promisify(execCallback)
-
-const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
 
 const getMarks = async (filePathMarks: string): Promise<Mark[]> => {
   const content = await fs.readFile(filePathMarks, 'utf8')

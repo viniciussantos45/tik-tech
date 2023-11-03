@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import Jimp from 'jimp'
 import path from 'node:path'
+import { IMAGE_GENERATOR_HOST, PATH_RESULTS } from '../config/environment'
 
 type GenerateCover = {
   id: string
@@ -10,13 +11,11 @@ type GenerateCover = {
   username: string
 }
 
-const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
-
 export const generateCover = async (params: GenerateCover) => {
   const { id, ...dataParams } = params
 
   try {
-    const response: AxiosResponse = await axios.get('http://localhost:2000/capture', {
+    const response: AxiosResponse = await axios.get(`http://${IMAGE_GENERATOR_HOST}:2000/capture`, {
       headers: { 'Content-Type': 'application/json' },
       params: dataParams,
       responseType: 'arraybuffer'

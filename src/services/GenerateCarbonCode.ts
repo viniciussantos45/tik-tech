@@ -1,8 +1,11 @@
 import axios, { AxiosResponse } from 'axios'
+import dotenv from 'dotenv'
 import Jimp from 'jimp'
 import path from 'node:path'
 
-const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
+dotenv.config()
+
+import { CARBONARA_HOST, PATH_RESULTS } from '../config/environment'
 
 type GenerateCarbonCodeParams = {
   code: string
@@ -58,7 +61,7 @@ export async function generateCarbonCode({ code, language, id }: GenerateCarbonC
   }
 
   try {
-    const response: AxiosResponse = await axios.post('http://localhost:3000/api/cook', data, {
+    const response: AxiosResponse = await axios.post(`http://${CARBONARA_HOST}:3000/api/cook`, data, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'arraybuffer'
     })

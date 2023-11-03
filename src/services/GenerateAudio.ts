@@ -2,6 +2,7 @@ import { PollyClient, StartSpeechSynthesisTaskCommand, StartSpeechSynthesisTaskC
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import fs from 'fs/promises'
 import { SpeechBase } from '../../types'
+import { AWS_CREDENTIALS, PATH_RESULTS } from '../config/environment'
 
 type GenerateAudio = {
   text: string
@@ -9,10 +10,8 @@ type GenerateAudio = {
   config: SpeechBase
 }
 
-const polly = new PollyClient({ region: 'us-east-1' })
-const s3 = new S3Client({})
-
-const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
+const polly = new PollyClient({ region: 'us-east-1', credentials: AWS_CREDENTIALS })
+const s3 = new S3Client({ credentials: AWS_CREDENTIALS })
 
 export const generateAudio = async ({ text, id, config }: GenerateAudio) => {
   try {
@@ -38,6 +37,7 @@ export const generateAudio = async ({ text, id, config }: GenerateAudio) => {
     })
 
     try {
+      console.log('path', PATH_RESULTS)
       const s3response = await s3.send(s3command)
 
       if (!s3response.Body) {

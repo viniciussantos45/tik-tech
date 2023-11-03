@@ -1,4 +1,3 @@
 node_modules
-results/*
-.env
+yarn.lock
 dist

@@ -12,8 +12,11 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": false,
+    "outDir": "dist",
+    "sourceMap": true,
+    "baseUrl": "./src"
   },
-  "include": ["src/**/*", "types/**/*", "index.ts"],
+  "include": ["src/**/*", "types/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

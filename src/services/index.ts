@@ -1,7 +1,7 @@
-import dotenv from 'dotenv'
 import fs from 'fs/promises'
 
 import { SpeechBase } from '../../types'
+import { PATH_RESULTS } from '../config/environment'
 import { getIO } from '../socket'
 import { replaceWordsToSpeechLanguageSSML } from '../utils'
 import { buildSubtitle } from './BuildSubtitle'
@@ -11,10 +11,6 @@ import { generateCarbonCode } from './GenerateCarbonCode'
 import { generateContent } from './GenerateContent'
 import { generateCover } from './GenerateCover'
 import { generateSubtitle } from './GenerateSubtitles'
-
-dotenv.config()
-
-const PATH_RESULTS = process.env.PATH_RESULTS ?? 'results'
 
 export async function videoGenerator(feature: string, programming_language: string, id: string) {
   const io = getIO()

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node ./index.js",
+    "start": "node ./dist/src/server.js",
     "dev": "ts-node src/server.ts",
     "test": "ts-node ./src/test.ts"
   },
@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@aws-sdk/client-polly": "^3.370.0",

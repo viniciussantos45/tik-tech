@@ -1,16 +1,32 @@
 version: '3.7'
 services:
+  api:
+    build:
+      context: .
+    ports:
+      - '10000:10000'
+      - '4000:4000'
+    environment:
+      - CARBONARA_HOST=carbonara
+      - IMAGE_GENERATOR_HOST=image-generator
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - video-generator
+    depends_on:
+      - image-generator
+      - carbonara
   image-generator:
     image: image-generator-html
-    build: 
+    build:
       context: ./modules/image-generator-html
     container_name: img-generator-html
     environment:
       - PORT=2000
-      - HOST=0.0.0.0
+      - HOST=img-generator-html
 
     ports:
-      - "2000:2000"
+      - '2000:2000'
     volumes:
       - ./modules/image-generator-html/public:/usr/app/public
     networks:
@@ -20,7 +36,7 @@ services:
 
     container_name: carbonara
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
     networks:
       - video-generator

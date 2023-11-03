@@ -2,6 +2,9 @@ import cors from 'cors'
 import express, { Request, Response } from 'express'
 import { Server } from 'http'
 import { v4 as uuid } from 'uuid'
+
+import { PATH_RESULTS } from './config/environment'
+
 import { videoGenerator } from './services'
 import { initializeSocket } from './socket'
 
@@ -24,7 +27,9 @@ initializeSocket(httpServer)
 
 app.use(express.json())
 
-app.post('/generate', async (req: Request, res: Response) => {
+app.use('/', express.static(path.join(process.cwd(), 'client/front-end/dist')))
+
+app.post('/api/generate', async (req: Request, res: Response) => {
   const { feature, programming_language } = req.body
 
   const id = uuid()
@@ -34,10 +39,10 @@ app.post('/generate', async (req: Request, res: Response) => {
   res.status(200).json({ video_id: id })
 })
 
-app.get('/download/:id', (req: Request, res: Response) => {
+app.get('/api/download/:id', (req: Request, res: Response) => {
   const { id } = req.params
 
-  const videoFilePath = path.join(__dirname, '..', `results/${id}/output_final_video.mp4`)
+  const videoFilePath = path.join(process.cwd(), `${PATH_RESULTS}/${id}/output_final_video.mp4`)
   if (!fs.existsSync(videoFilePath)) {
     return res.status(404).send('Video not found')
   }
@@ -47,6 +52,10 @@ app.get('/download/:id', (req: Request, res: Response) => {
 
   const stream = fs.createReadStream(videoFilePath)
   stream.pipe(res)
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd() + '/client/front-end/dist'))
 })
 
 httpServer.listen(PORT, () => {

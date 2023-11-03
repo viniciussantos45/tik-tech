@@ -1,9 +1,7 @@
-import dotenv from 'dotenv'
 import { Configuration, OpenAIApi } from 'openai'
+import { OPENAI_API_KEY } from '../config/environment'
 import { removeFirstWordInCodeBlocks } from '../utils'
 import { languagePrograms } from './GenerateCarbonCode'
-
-dotenv.config()
 
 type GenerateContentReturn = {
   title: string
@@ -19,7 +17,7 @@ type GenerateContentParams = {
 }
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: OPENAI_API_KEY
 })
 
 const openai = new OpenAIApi(configuration)
