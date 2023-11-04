@@ -47,9 +47,11 @@ function Home() {
     async function onVideoStatusEvent({ id: uuid, status, status_message }: PayloadVideoStatus) {
       const video = (await getAll()).find((video) => video.uuid === uuid)
 
-      await update({ ...video, uuid, status, status_message })
+      if (video) {
+        await update({ ...video, uuid, status, status_message })
 
-      await loadVideos()
+        await loadVideos()
+      }
     }
 
     socket.on('connect', onConnect)

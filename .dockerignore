@@ -2,5 +2,4 @@ node_modules
 results/*
 dist
 modules
-client
 package-lock.json

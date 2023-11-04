@@ -46,7 +46,7 @@ export const CardVideo = ({ videoData }: CardVideoProps) => {
             className='cursor-pointer'
             onClick={() => {
               new JsFileDownloader({
-                url: `http://localhost:10000/download/${video.uuid}`,
+                url: `http://localhost:10000/api/download/${video.uuid}`,
                 filename: `${video.uuid}.mp4`,
                 autoStart: true
               }).then(() => console.log('File downloaded'))
