@@ -6,10 +6,6 @@ O Tik Tech é um aplicativo gerador de vídeos que explica frameworks e bibliote
 
 https://github.com/viniciussantos45/tik-tech/assets/47752947/aa6c95d4-7a2c-40f3-a7fb-fc112fff9212
 
-**Video gerado**
-
-https://github.com/viniciussantos45/tik-tech/assets/47752947/d992cfcb-fb61-431e-afeb-c4de59803aec
-
 
 
 
