@@ -2,6 +2,18 @@
 
 O Tik Tech é um aplicativo gerador de vídeos que explica frameworks e bibliotecas de Node.js e Python. Ele automatiza a criação de vídeos explicativos sobre como utilizar diferentes frameworks e bibliotecas, gerando código de exemplo, narrando os passos e juntando tudo em um vídeo. Este documento fornecerá um guia passo a passo sobre como configurar e usar o Tik Tech.
 
+**Utilizando o app**
+
+https://github.com/viniciussantos45/tik-tech/assets/47752947/aa6c95d4-7a2c-40f3-a7fb-fc112fff9212
+
+**Video gerado**
+
+https://github.com/viniciussantos45/tik-tech/assets/47752947/d992cfcb-fb61-431e-afeb-c4de59803aec
+
+
+
+
+
 ## Tecnologias Utilizadas
 
 - [Puppeteer](https://pptr.dev/): Para gerar a capa do vídeo e o código do exemplo de uso da feature.
